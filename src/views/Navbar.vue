@@ -1,15 +1,13 @@
 <template>
     <div id = "Body">
         <div id = "navBox">
+            <div id = "title">
+                <router-link id="header" to="/Home">Family Feud</router-link>
+            </div>
             <div id = "links">
                 <div id = "linkBox">
-                    <router-link v-if="mobileView >=650" id="link" to="/Donate">Donate</router-link>
-                    <router-link v-if="mobileView >=650" id="link" to="/Request">Request</router-link>
-                    <router-link v-if="mobileView >=650" id="link" to="/FAQ">FAQ</router-link>
-                    <router-link v-if="mobileView >=650" id="link" to="/About">About</router-link>
-                    <!--<router-link v-if="mobileView >=650" id="link" to="/Login">Login</router-link>-->
-                    <!--<router-link v-if="mobileView >=650" id="link" to="/signup">Sign Up</router-link>-->
-                    <router-link v-if="mobileView >=650" id="link" to="/myaccount">My Account</router-link>
+                    <router-link v-if="mobileView >=650" id="link" to="/Home">Play</router-link>
+                    <router-link v-if="mobileView >=650" id="link" to="/HowtoPlay">How to Play</router-link>
                 </div>
             </div>
             <div id = "barBox" v-if="mobileView < 650">
@@ -18,13 +16,8 @@
         </div>
             <transition name="slide-fade">
                 <div id = "sideBar" v-if="sideShow">
-                <router-link  id="link" to="/Donate">Donate</router-link>
-                <router-link  id="link" to="/Request">Request</router-link>
-                <router-link  id="link" to="/FAQ">FAQ</router-link>
-                <router-link  id="link" to="/About">About</router-link>
-                <router-link  id="link" to="/Login">Login</router-link>
-                <router-link  id="link" to="/Sign Up">Sign Up</router-link>
-                <router-link  id="link" to="/myaccount">My Account</router-link>
+                <router-link  id="link" to="/Home">Play</router-link>
+                <router-link  id="link" to="/HowtoPlay">How to Play</router-link>
                 </div>
             </transition>
         <div id = "content">
@@ -60,20 +53,26 @@ export default {
 <style lang="scss" scoped>
 a { text-decoration: none; }
 #navBox{
-    margin-top:5px;
     overflow:hidden;
     //background-color: aqua;
     display:flex;
     justify-content: space-between;
     flex: 1;
+    background-color: #64b9ee;
+    padding-bottom: 1%;
     #title{
         /*
         padding-left:2vw;
         padding-right:2vw;
         */
-        margin:2vw 4vw;
-        img{
-            width: 200px;
+        padding-top:2%;
+        #header{
+            padding-left:60px;
+            font-size: 2rem;
+            color: white;
+            &:hover{
+                color: #edcf2e;
+            }
         }
     }
     #links{
@@ -89,9 +88,9 @@ a { text-decoration: none; }
                 text-align: center;
                 padding: 50% 10px;
                 font-size:1.5rem;
-                color:gray;
+                color:white;
                 &:hover{
-                    color: #7ae06e;
+                    color: #edcf2e;
                 }
             }
         }
@@ -100,7 +99,7 @@ a { text-decoration: none; }
         margin-left:auto;
         margin-right:0;
         i{
-            background-color: #4dd964;
+            background-color: #64b9ee;
             padding: 20px;
             color:white;
         }
@@ -120,13 +119,13 @@ opacity: 0;
 #sideBar{
     float:right;
     display:grid;
-    background-color: #4dd964;
+    background-color: #64b9ee;
     width:100%;
     #link{
         padding:3%;
         color:white;
         &:hover{
-            color:gray;
+            color:#edcf2e;
         }
     }
 }
