@@ -17,6 +17,9 @@
           </li>
         </ul>
       </div>
+      <div id="playBox" v-if="players.length > 1">
+        <router-link id="pButton" to="/Play">Play!</router-link>
+      </div>
   </div>
 </template>
 
@@ -107,7 +110,31 @@ export default {
         font-size: 15px;
         color: #111;
       }
+      #teamA{
+        &:hover{
+            color:#ff6437;
+        }
+      }
+      #teamB{
+        &:hover{
+            color:#f89c12;
+        }
+      }
     }
-}
+  }
+  #playBox{
+    margin:auto;
+    margin-top:20px;
+    padding: 5px 40px;
+    background-color: #64b9ee;
+    border-radius: 10px;
+    &:hover{
+      background-color:#e5d824;
+    }
+    #pButton{
+      color:white;
+      font-size: 25px;
+    }
+  }
 }
 </style>

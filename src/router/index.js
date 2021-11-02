@@ -20,6 +20,11 @@ const routes = [
                 meta: { title: 'Home'},
             },       
             {
+                path: 'Play',
+                component: () => import('@/components/Play.vue'),
+                meta: { title: 'Play'},
+            },       
+            {
                 path: 'HowtoPlay',
                 component: () => import('@/components/HowtoPlay.vue'),
                 meta: { title: 'HowtoPlay'},
