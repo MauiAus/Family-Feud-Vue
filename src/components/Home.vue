@@ -11,14 +11,20 @@
           <li v-for="player in players" :key="player.index">
             <div id="pBox" v-bind:style='{"border-color":player.activeColor}' >
               <input id="pInput" v-on:keyup.enter="addPlayer()" v-on:keyup.delete="removePlayer()" type="text" placeholder="Enter team name" v-model="player.pname"/>
-              <p id="teamA" v-on:click="player.activeColor='#ff6437'">{{teamA}}</p>
-              <p id="teamB" v-on:click="player.activeColor='#f89c12'">{{teamB}}</p>
+              <p id="teamA" v-on:click="addTeam(true)">{{teamA}}</p>
+              <p id="teamB" v-on:click="addTeam(false)">{{teamB}}</p>
             </div>
           </li>
         </ul>
       </div>
       <div id="playBox" v-if="players.length > 1">
-        <router-link id="pButton" to="/Play">Play!</router-link>
+       <!--<router-link id="pButton" v-bind:players="players" to="/Play">Play!</router-link>-->
+       <!--<p id="pButton" @click="goPlay()">Play!</p> -->
+       <router-link id="pButton"
+          :to="{ name:'Play',
+                 params:{data: this.players,teamA,teamB}}">
+        Play!
+       </router-link>
       </div>
   </div>
 </template>
@@ -34,21 +40,31 @@ export default {
       tempB:"",
       tempC:"",
       players:[
-        {pname:"",team:"",activeColor:"gray"},
+        {pname:"",team:"",activeColor:"gray",aFlag:false,bFlag:false},
       ]
     }
   },
   methods:{
     addPlayer(){
-      this.players.push({pname:"",team:"",activeColor:"gray"});
+      this.players.push({pname:"",team:"",activeColor:"gray",aFlag:false,bFlag:false});
     },
     removePlayer(){
       if(this.players.length>1){
         if(this.players[this.players.length-1].pname.length <= 0)
           this.players.pop();
       }
+    },
+    addTeam(checkF){
+      if(checkF){
+        this.players[this.players.length-1].aFlag = true;
+        this.players[this.players.length-1].activeColor='#ff6437';
+      }
+      else{
+        this.players[this.players.length-1].bFlag = true;
+        this.players[this.players.length-1].activeColor='#f89c12';
+      }
     }
-  }
+  },
 }
 </script>
 
@@ -125,7 +141,8 @@ export default {
   #playBox{
     margin:auto;
     margin-top:20px;
-    padding: 5px 40px;
+    margin-bottom:50px;
+    padding: 2px 40px;
     background-color: #64b9ee;
     border-radius: 10px;
     &:hover{
@@ -133,7 +150,7 @@ export default {
     }
     #pButton{
       color:white;
-      font-size: 25px;
+      font-size: 20px;
     }
   }
 }

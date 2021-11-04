@@ -21,8 +21,10 @@ const routes = [
             },       
             {
                 path: 'Play',
+                name: 'Play',
                 component: () => import('@/components/Play.vue'),
                 meta: { title: 'Play'},
+                props: true,
             },       
             {
                 path: 'HowtoPlay',
